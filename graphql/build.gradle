@@ -1,0 +1,43 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.1.0'
+	id 'io.spring.dependency-management' version '1.1.0'
+	id 'com.netflix.dgs.codegen' version '5.6.6'
+}
+
+group = 'com.djaytech'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.netflix.graphql.dgs:graphql-dgs-subscriptions-websockets-autoconfigure'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	implementation(platform('com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:6.0.0'))
+	implementation 'com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter'
+	implementation 'com.netflix.graphql.dgs:graphql-dgs-extended-scalars'
+
+	implementation 'net.datafaker:datafaker:1.7.0'
+	implementation 'org.apache.commons:commons-lang3:3.12.0'
+	implementation 'org.ocpsoft.prettytime:prettytime:5.0.6.Final'
+	implementation 'org.bouncycastle:bcprov-jdk15on:1.70'
+
+	runtimeOnly 'org.postgresql:postgresql'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+generateJava {
+	packageName = 'com.djaytech.graphql.generated'
+}

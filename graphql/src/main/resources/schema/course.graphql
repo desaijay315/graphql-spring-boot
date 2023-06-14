@@ -1,0 +1,10 @@
+type Hello{
+ text: String!
+ randomNumber: Int
+}
+
+
+type Query {
+ allHellos: [Hello]
+ oneHello: Hello
+}
